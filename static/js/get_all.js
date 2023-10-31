@@ -1,7 +1,7 @@
 function getAll() {
     var request = new XMLHttpRequest();
     //request.open('GET',"http://localhost:8000/contactos");
-    request.open('GET', "https://api-backend-8kg5.onrender.com/contactos");
+    request.open('GET', "https://api-contactos-backend-6ff78d299419.herokuapp.com/contactos");
     request.send();
 
     request.onload = (e) => {
