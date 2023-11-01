@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>Buscar contacto</title>
-    </head>
-    <body>
-        <h1>Buscar contacto</h1>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Contacto</title>
+</head>
+<body>
+    <h1>Buscar Contacto por Correo Electrónico</h1>
+    
+    <label for="searchEmail">Correo Electrónico:</label>
+    <input type="text" id="searchEmail" required>
+    <button onclick="searchByEmail()">Buscar</button>
+    
+    <div id="searchResult"></div>
+
+    <script src="../static/js/buscar.js"></script>
+</body>
 </html>
