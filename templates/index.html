@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <title>Contactos</title>
-        <script type="text/javascript" src="../static/js/get_all.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Contactos</title>
+    <script type="text/javascript" src="../static/js/get_all.js"></script>
+    <style>
+        .options {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
 
-    <body>
-        <a href="buscar">Buscar</a>
-        <table border="1" id="table_contactos">
-            <thead id="thead_contactos">
-                <th>Email</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-            </thead>
-            <tbody id="tbody_contactos">
-            </tbody>
-        </table>
-        <script>
-            document.body.onload = getAll();
-        </script>
-    </body>
+<body>
+    <a href="buscar">Buscar</a>
+    <a href="insertar">Insertar</a>
+    <table border="1" id="table_contactos">
+        <thead id="thead_contactos">
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Opciones</th>
+        </thead>
+        <tbody id="tbody_contactos">
+        </tbody>
+    </table>
+    <script>
+        document.body.onload = getAll();
+    </script>
+</body>
 </html>
-

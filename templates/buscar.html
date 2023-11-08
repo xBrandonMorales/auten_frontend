@@ -5,13 +5,23 @@
     <title>Buscar Contacto</title>
 </head>
 <body>
-    <h1>Buscar Contacto por Correo Electrónico</h1>
+    <h1>Buscar Contacto</h1>
     
     <label for="searchEmail">Correo Electrónico:</label>
-    <input type="text" id="searchEmail" required>
+    <input type="text" id="searchEmail" required><br><br>
     <button onclick="searchByEmail()">Buscar</button>
+    <button onclick="window.location.href = '/';">Regresar</button>
     
-    <div id="searchResult"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody id="searchResult"></tbody>
+    </table>
 
     <script src="../static/js/buscar.js"></script>
 </body>
