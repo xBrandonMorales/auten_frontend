@@ -1,7 +1,6 @@
 function getAll() {
     var request = new XMLHttpRequest();
-    //request.open('GET',"http://localhost:8000/contactos");
-    request.open('GET', "https://api-contactos-backend-0e75b19d44da.herokuapp.com/contactos");
+    request.open('GET', "http://127.0.0.1:8000/contactos");
     request.send();
 
     request.onload = (e) => {
@@ -16,23 +15,36 @@ function getAll() {
         // Limpiar cualquier contenido previo en la tabla
         tbody_contactos.innerHTML = "";
 
-        // Iterar a través de todos los contactos en el arreglo json
         json.forEach((contact) => {
             var tr = document.createElement("tr");
             var td_email = document.createElement("td");
             var td_nombre = document.createElement("td");
             var td_telefono = document.createElement("td");
+            var td_options = document.createElement("td");
 
             td_email.innerHTML = contact["email"];
             td_nombre.innerHTML = contact["nombre"];
             td_telefono.innerHTML = contact["telefono"];
 
+            // Crear botón "Ver" para cada registro
+            var viewButton = document.createElement("button");
+            viewButton.textContent = "Ver";
+            viewButton.addEventListener("click", function () {
+                // Redirige a la página "ver.html" con el correo electrónico como parámetro
+                window.location.href = `ver.html?email=${contact["email"]}`;
+            });
+
+            // Agregar el botón "Ver" junto a la fila de la tabla
+            td_options.appendChild(viewButton);
+
             tr.appendChild(td_email);
             tr.appendChild(td_nombre);
             tr.appendChild(td_telefono);
+            tr.appendChild(td_options);
 
             tbody_contactos.appendChild(tr);
         });
     };
 }
 
+document.body.onload = getAll();
