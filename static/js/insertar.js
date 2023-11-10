@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const telefono = document.getElementById("telefono").value;
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/contactos", {
+            const response = await fetch("https://api-contactos-backend-0e75b19d44da.herokuapp.com/contactos", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
