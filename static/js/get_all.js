@@ -31,11 +31,29 @@ function getAll() {
             viewButton.textContent = "Ver";
             viewButton.addEventListener("click", function () {
                 // Redirige a la página "ver.html" con el correo electrónico como parámetro
-                window.location.href = `ver.html?email=${contact["email"]}`;
+                window.location.href = `ver?email=${contact["email"]}`;
             });
 
-            // Agregar el botón "Ver" junto a la fila de la tabla
+            // Crear botón "Editar" para cada registro
+            var editButton = document.createElement("button");
+            editButton.textContent = "Editar";
+            editButton.addEventListener("click", function () {
+                // Redirige a la página "editar.html" con el correo electrónico como parámetro
+                window.location.href = `editar?email=${contact["email"]}`;
+            });
+
+            // Crear botón "Borrar" para cada registro
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Borrar";
+            deleteButton.addEventListener("click", function () {
+                // Redirige a la página "borrar.html" con el correo electrónico como parámetro
+                window.location.href = `borrar?email=${contact["email"]}`;
+            });
+
+            // Agregar los botones a la celda de opciones
             td_options.appendChild(viewButton);
+            td_options.appendChild(editButton);
+            td_options.appendChild(deleteButton);
 
             tr.appendChild(td_email);
             tr.appendChild(td_nombre);
@@ -46,5 +64,3 @@ function getAll() {
         });
     };
 }
-
-document.body.onload = getAll();

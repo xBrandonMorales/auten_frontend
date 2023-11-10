@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Visualizar Contacto</title>
-    <script type="text/javascript" src="../static/js/ver.js"></script>
+    <title>Detalles del Contacto</title>
+    <!-- Enlaza tu archivo JavaScript específico para la página "ver.html" -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/ver.js') }}"></script>
 </head>
 <body>
     <h1>Detalles del Contacto</h1>
     <div id="contact-details">
-        <p><strong>Email:</strong> <span id="email"></span></p>
-        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-        <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
-        <button onclick="window.location.href = '/';">Regresar</button>
+        <!-- Aquí se mostrarán los detalles del contacto -->
     </div>
+    <button onclick="window.location.href = '/';">Regresar</button>
 </body>
 </html>
