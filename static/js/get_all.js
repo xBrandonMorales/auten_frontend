@@ -29,6 +29,8 @@ function getAll() {
             // Crear botón "Ver" para cada registro
             var viewButton = document.createElement("button");
             viewButton.textContent = "Ver";
+            viewButton.className = "btn btn-primary"; // Aplicar la clase de Bootstrap
+
             viewButton.addEventListener("click", function () {
                 // Redirige a la página "ver.html" con el correo electrónico como parámetro
                 window.location.href = `ver?email=${contact["email"]}`;
@@ -37,6 +39,8 @@ function getAll() {
             // Crear botón "Editar" para cada registro
             var editButton = document.createElement("button");
             editButton.textContent = "Editar";
+            editButton.className = "btn btn-success"; // Aplicar la clase de Bootstrap
+
             editButton.addEventListener("click", function () {
                 // Redirige a la página "editar.html" con el correo electrónico como parámetro
                 window.location.href = `editar?email=${contact["email"]}`;
@@ -45,6 +49,8 @@ function getAll() {
             // Crear botón "Borrar" para cada registro
             var deleteButton = document.createElement("button");
             deleteButton.textContent = "Borrar";
+            deleteButton.className = "btn btn-danger"; // Aplicar la clase de Bootstrap
+
             deleteButton.addEventListener("click", function () {
                 // Redirige a la página "borrar.html" con el correo electrónico como parámetro
                 window.location.href = `borrar?email=${contact["email"]}`;

@@ -4,12 +4,19 @@
     <title>Detalles del Contacto</title>
     <!-- Enlaza tu archivo JavaScript específico para la página "ver.html" -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/ver.js') }}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Detalles del Contacto</h1>
-    <div id="contact-details">
-        <!-- Aquí se mostrarán los detalles del contacto -->
+    <div class="container text-center">
+        <h1 class="my-4">Detalles del Contacto</h1>
+        <div id="contact-details">
+            <!-- Aquí se mostrarán los detalles del contacto -->
+        </div>
+        <a class="btn btn-primary" href="/">Regresar</a>
     </div>
-    <button onclick="window.location.href = '/';">Regresar</button>
+    <!-- Agrega el script al final para garantizar que se cargue después de la página -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

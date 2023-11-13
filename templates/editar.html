@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Editar Contacto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-
 <body>
-    <h2>Editar Contacto</h2>
+    <div class="container text-center">
+        <h2 class="my-4">Editar Contacto</h2>
 
-    <form id="edit-contact-form">
-        <label for="email">Correo Electrónico:</label>
-        <input type="text" id="email" name="email" disabled>
-        <br>
+        <form id="edit-contact-form" class="text-left">
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="text" id="email" name="email" class="form-control" disabled>
+            </div>
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <br>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
 
-        <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono" required>
-        <br>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" class="form-control" required>
+            </div>
 
-        <button type="button" onclick="actualizar()">Actualizar</button>
-        <!-- Cambiado de <button> a <input> -->
-        <input type="button" value="Regresar" onclick="window.location.href = '/';">
-    </form>
+            <button type="button" class="btn btn-primary" onclick="actualizar()">Actualizar</button>
+            <a class="btn btn-secondary" href="/">Regresar</a>
+        </form>
 
-    <div id="mensaje"></div>
-    <div id="error-mensaje"></div>
+        <div id="mensaje"></div>
+        <div id="error-mensaje"></div>
+    </div>
 
+    <!-- Agrega el script al final para garantizar que se cargue después de la página -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../static/js/editar.js"></script>
 </body>
 </html>

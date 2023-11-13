@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Buscar Contacto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Buscar Contacto</h1>
-    
-    <label for="searchEmail">Correo Electrónico:</label>
-    <input type="text" id="searchEmail" required><br><br>
-    <button onclick="searchByEmail()">Buscar</button>
-    <button onclick="window.location.href = '/';">Regresar</button>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-            </tr>
-        </thead>
-        <tbody id="searchResult"></tbody>
-    </table>
+    <div class="container text-center">
+        <h1 class="my-4">Buscar Contacto</h1>
 
+        <div class="form-group">
+            <label for="searchEmail">Correo Electrónico:</label>
+            <input type="text" id="searchEmail" class="form-control" required>
+        </div>
+        
+        <button type="button" class="btn btn-primary" onclick="searchByEmail()">Buscar</button>
+        <a class="btn btn-secondary" href="/">Regresar</a>
+        
+        <table class="table table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody id="searchResult"></tbody>
+        </table>
+    </div>
+
+    <!-- Agrega el script al final para garantizar que se cargue después de la página -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../static/js/buscar.js"></script>
 </body>
 </html>

@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contactos</title>
-    <script type="text/javascript" src="../static/js/get_all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .options {
-            display: flex;
-            gap: 20px;
+        /* Estilos personalizados para los botones */
+        .custom-button {
+            background-color: #007BFF; /* Color de fondo personalizado */
+            color: #fff; /* Color de texto personalizado */
+            border: none; /* Sin borde */
+            padding: 8px 16px; /* Espaciado interno */
+            border-radius: 4px; /* Bordes redondeados */
+            cursor: pointer; /* Cursor de puntero al pasar el ratón */
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3; /* Color de fondo al pasar el ratón */
         }
     </style>
 </head>
-
 <body>
-    <h1>Contactos</h1>
-    <a href="buscar">Buscar</a>
-    <a href="insertar">Insertar</a>
-    <table border="1" id="table_contactos">
-        <thead id="thead_contactos">
-            <th>Email</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Opciones</th>
-        </thead>
-        <tbody id="tbody_contactos">
-        </tbody>
-    </table>
+    <div class="container text-center">
+        <h1 class="my-4">Contactos</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center mb-3">
+                <a class="btn btn-primary" href="buscar">Buscar</a>
+            </div>
+            <div class="col-md-4 text-center mb-3">
+                <a class="btn btn-success" href="insertar">Insertar</a>
+            </div>
+        </div>
+
+        <table class="table table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbody_contactos">
+                <!-- Aquí se mostrarán los datos de los contactos -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Agrega el script al final para garantizar que se cargue después de la página -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../static/js/get_all.js"></script>
     <script>
-        document.body.onload = getAll();
+        document.addEventListener("DOMContentLoaded", function () {
+            getAll();
+        });
     </script>
 </body>
 </html>
