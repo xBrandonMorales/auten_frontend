@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.status === 200) {
                 const data = await response.json();
-                insertResultDiv.innerHTML = `<p>Contacto insertado: ${data.email}</p>`;
+                insertResultDiv.innerHTML = `<p>Contacto insertado correctamente.</p>`;
                 // Limpiar los campos del formulario después de la inserción
                 document.getElementById("email").value = "";
                 document.getElementById("nombre").value = "";

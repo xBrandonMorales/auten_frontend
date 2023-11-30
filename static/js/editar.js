@@ -53,7 +53,7 @@ function actualizar() {
     .then(data => {
         // Muestra el mensaje de éxito en la página
         const mensajeElemento = document.getElementById("mensaje");
-        mensajeElemento.innerHTML = `Contacto actualizado con éxito: ${data.email}, ${data.nombre}, ${data.telefono}`;
+        mensajeElemento.innerHTML = `Contacto actualizado con éxito.`;
 
         // Limpia el mensaje de error si estaba presente
         const errorMensajeElemento = document.getElementById("error-mensaje");
