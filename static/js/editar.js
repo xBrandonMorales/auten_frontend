@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const telefonoInput = document.getElementById("telefono");
 
     // Realiza una solicitud para obtener detalles del contacto con el correo electrónico proporcionado
-    fetch(`https://api-contactos-backend-0e75b19d44da.herokuapp.com/contactos/${encodeURIComponent(email)}`)
+    fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`)
         .then(response => response.json())
         .then(data => {
             // Llena los campos del formulario con los detalles del contacto
@@ -31,7 +31,7 @@ function actualizar() {
     const email = params.get("email");
 
     // Realiza una solicitud PUT para actualizar el contacto en el backend
-    fetch(`https://api-contactos-backend-0e75b19d44da.herokuapp.com/contactos/${encodeURIComponent(email)}`, {
+    fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
