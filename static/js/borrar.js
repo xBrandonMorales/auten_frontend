@@ -1,11 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Verificar el token al cargar la página
+    checkTokenAndRedirect();
+
     // Obtén el parámetro del correo electrónico de la URL
     const params = new URLSearchParams(window.location.search);
     const email = params.get("email");
 
     // Realiza una solicitud GET para obtener detalles del contacto con el correo electrónico proporcionado
-    fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`)
+    const token = getCookie("token");  // Obtener el token almacenado en las cookies
+    fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`,  // Incluir el token en el encabezado de la solicitud
+        },
+    })
         .then(response => {
+            // Verificar si la respuesta indica un token no válido (código de estado 401)
+            if (response.status === 401) {
+                // Redirigir a la página de inicio de sesión
+                window.location.href = "/";
+            }
             if (!response.ok) {
                 throw new Error(`Error al obtener detalles del contacto. Código de estado: ${response.status}`);
             }
@@ -35,10 +48,12 @@ function borrarContacto() {
     const email = params.get("email");
 
     // Realiza una solicitud DELETE para borrar el contacto en el backend
+    const token = getCookie("token");  // Obtener el token almacenado en las cookies
     fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,  // Incluir el token en el encabezado de la solicitud
         },
     })
     .then(response => {
@@ -52,7 +67,7 @@ function borrarContacto() {
     .then(data => {
         // Muestra el mensaje de éxito y redirige a la página principal
         alert(`Contacto borrado con éxito.`);
-        window.location.href = "/";
+        window.location.href = "/home";
     })
     .catch(error => {
         // Muestra el mensaje de error
@@ -62,5 +77,33 @@ function borrarContacto() {
 
 function cancelarBorrar() {
     // Redirige a la página principal al cancelar el borrado
-    window.location.href = "/";
+    window.location.href = "/home";
+}
+
+function checkTokenAndRedirect() {
+    const token = getCookie("token");  // Obtener el token almacenado en las cookies
+    const request = new XMLHttpRequest();
+
+    // Hacer una solicitud GET al endpoint del backend (puedes ajustar el endpoint según tus necesidades)
+    request.open('GET', 'https://contactos-backend-2x51.onrender.com/check_token');
+    
+    // Incluir el token en el encabezado de la solicitud
+    request.setRequestHeader("Authorization", `Bearer ${token}`);
+    
+    request.send();
+
+    request.onload = (e) => {
+        // Verificar si la respuesta indica un token no válido (código de estado 401)
+        if (request.status === 401) {
+            // Redirigir a la página de inicio de sesión
+            window.location.href = "/";
+        }
+    };
+}
+
+// Función para obtener el valor de una cookie por su nombre
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }

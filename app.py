@@ -4,7 +4,11 @@ from flask import render_template
 app = Flask(__name__)
 
 @app.route("/")
-def index():
+def login():
+    return render_template('login.html')
+
+@app.route("/home")
+def home():
     message = "Hello, World"
     return render_template('index.html', message=message)
 

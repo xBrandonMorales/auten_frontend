@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Verificar el token al cargar la página
+    checkTokenAndRedirect();
+
     // Obtén el parámetro del correo electrónico de la URL
     const params = new URLSearchParams(window.location.search);
     const email = params.get("email");
@@ -10,8 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const telefonoInput = document.getElementById("telefono");
 
     // Realiza una solicitud para obtener detalles del contacto con el correo electrónico proporcionado
-    fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`)
-        .then(response => response.json())
+    const token = getCookie("token");  // Obtener el token almacenado en las cookies
+    fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`,  // Incluir el token en el encabezado de la solicitud
+        },
+    })
+        .then(response => {
+            // Verificar si la respuesta indica un token no válido (código de estado 401)
+            if (response.status === 401) {
+                // Redirigir a la página de inicio de sesión
+                window.location.href = "/";
+            }
+            return response.json();
+        })
         .then(data => {
             // Llena los campos del formulario con los detalles del contacto
             emailInput.value = data.email;
@@ -31,10 +46,12 @@ function actualizar() {
     const email = params.get("email");
 
     // Realiza una solicitud PUT para actualizar el contacto en el backend
+    const token = getCookie("token");  // Obtener el token almacenado en las cookies
     fetch(`https://contactos-backend-2x51.onrender.com/contactos/${encodeURIComponent(email)}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,  // Incluir el token en el encabezado de la solicitud
         },
         body: JSON.stringify({
             email: email,
@@ -42,33 +59,61 @@ function actualizar() {
             telefono: nuevoTelefono,
         }),
     })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(error => {
-                throw new Error(`Error al actualizar el contacto. Código de estado: ${response.status}. Detalles: ${JSON.stringify(error)}`);
-            });
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {
+                    throw new Error(`Error al actualizar el contacto. Código de estado: ${response.status}. Detalles: ${JSON.stringify(error)}`);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Muestra el mensaje de éxito en la página
+            const mensajeElemento = document.getElementById("mensaje");
+            mensajeElemento.innerHTML = `Contacto actualizado con éxito.`;
+
+            // Limpia el mensaje de error si estaba presente
+            const errorMensajeElemento = document.getElementById("error-mensaje");
+            errorMensajeElemento.innerHTML = "";
+
+            // Redirige a la página principal después de una edición exitosa
+            window.location.href = "/home";
+        })
+        .catch(error => {
+            // Muestra el mensaje de error en la página
+            const errorMensajeElemento = document.getElementById("error-mensaje");
+            errorMensajeElemento.innerHTML = `Error al actualizar el contacto: ${error.message}`;
+
+            // Limpia el mensaje de éxito si estaba presente
+            const mensajeElemento = document.getElementById("mensaje");
+            mensajeElemento.innerHTML = "";
+        });
+}
+
+function checkTokenAndRedirect() {
+    const token = getCookie("token");  // Obtener el token almacenado en las cookies
+    const request = new XMLHttpRequest();
+
+    // Hacer una solicitud GET al endpoint del backend (puedes ajustar el endpoint según tus necesidades)
+    request.open('GET', 'https://contactos-backend-2x51.onrender.com/check_token');
+    
+    // Incluir el token en el encabezado de la solicitud
+    request.setRequestHeader("Authorization", `Bearer ${token}`);
+    
+    request.send();
+
+    request.onload = (e) => {
+        // Verificar si la respuesta indica un token no válido (código de estado 401)
+        if (request.status === 401) {
+            // Redirigir a la página de inicio de sesión
+            window.location.href = "/";
         }
-        return response.json();
-    })
-    .then(data => {
-        // Muestra el mensaje de éxito en la página
-        const mensajeElemento = document.getElementById("mensaje");
-        mensajeElemento.innerHTML = `Contacto actualizado con éxito.`;
+    };
+}
 
-        // Limpia el mensaje de error si estaba presente
-        const errorMensajeElemento = document.getElementById("error-mensaje");
-        errorMensajeElemento.innerHTML = "";
-
-        // Redirige a la página principal después de una edición exitosa
-        window.location.href = "/";
-    })
-    .catch(error => {
-        // Muestra el mensaje de error en la página
-        const errorMensajeElemento = document.getElementById("error-mensaje");
-        errorMensajeElemento.innerHTML = `Error al actualizar el contacto: ${error.message}`;
-
-        // Limpia el mensaje de éxito si estaba presente
-        const mensajeElemento = document.getElementById("mensaje");
-        mensajeElemento.innerHTML = "";
-    });
+// Función para obtener el valor de una cookie por su nombre
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }

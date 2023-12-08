@@ -19,6 +19,20 @@
         .custom-button:hover {
             background-color: #0056b3; /* Color de fondo al pasar el ratón */
         }
+
+        /* Estilos personalizados para el botón de cerrar sesión */
+        .logout-button {
+            background-color: #dc3545; /* Color de fondo personalizado para cerrar sesión */
+            color: #fff; /* Color de texto personalizado */
+            border: none; /* Sin borde */
+            padding: 8px 16px; /* Espaciado interno */
+            border-radius: 4px; /* Bordes redondeados */
+            cursor: pointer; /* Cursor de puntero al pasar el ratón */
+        }
+
+        .logout-button:hover {
+            background-color: #c82333; /* Color de fondo al pasar el ratón para cerrar sesión */
+        }
     </style>
 </head>
 <body>
@@ -47,6 +61,9 @@
                 <!-- Aquí se mostrarán los datos de los contactos -->
             </tbody>
         </table>
+
+        <!-- Botón de cerrar sesión -->
+        <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
     </div>
 
     <!-- Agrega el script al final para garantizar que se cargue después de la página -->
@@ -58,6 +75,15 @@
         document.addEventListener("DOMContentLoaded", function () {
             getAll();
         });
+
+        // Función para cerrar sesión
+        function logout() {
+            // Eliminar la cookie que contiene el token
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            // Redirigir a la página de inicio de sesión
+            window.location.href = "/";
+        }
     </script>
 </body>
 </html>

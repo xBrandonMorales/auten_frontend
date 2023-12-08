@@ -1,6 +1,21 @@
 function getAll() {
+    // Obtener el token de las cookies
+    const token = getCookie("token");
+
+    // Verificar si el token está presente
+    if (!token) {
+        console.error("Token not found. User may not be authenticated.");
+        // Redirigir a la página de inicio de sesión
+        window.location.href = "/";
+        return;
+    }
+
     var request = new XMLHttpRequest();
     request.open('GET', "https://contactos-backend-2x51.onrender.com/contactos");
+
+    // Agregar el token al encabezado de autorización
+    request.setRequestHeader("Authorization", `Bearer ${token}`);
+
     request.send();
 
     request.onload = (e) => {
@@ -9,6 +24,13 @@ function getAll() {
         console.log("response: " + response);
         console.log("json: " + JSON.stringify(json));
         console.log("status_code: " + request.status);
+
+        if (request.status === 401) {
+            console.error("Unauthorized. Token may be invalid.");
+            // Redirigir a la página de inicio de sesión
+            window.location.href = "/";
+            return;
+        }
 
         const tbody_contactos = document.getElementById("tbody_contactos");
 
@@ -69,4 +91,11 @@ function getAll() {
             tbody_contactos.appendChild(tr);
         });
     };
+}
+
+// Función para obtener el valor de una cookie por su nombre
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }
