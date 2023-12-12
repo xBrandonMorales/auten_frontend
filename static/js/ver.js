@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ejemplo de solicitud con Fetch API
     const token = getCookie("token");  // Obtener el token almacenado en las cookies
-    fetch(`https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io//contactos/${encodeURIComponent(email)}`, {
+    fetch(`https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/contactos/${encodeURIComponent(email)}`, {
         headers: {
             'Authorization': `Bearer ${token}`,  // Incluir el token en el encabezado de la solicitud
         },
@@ -40,8 +40,8 @@ function checkTokenAndRedirect() {
     const token = getCookie("token");  // Obtener el token almacenado en las cookies
     const request = new XMLHttpRequest();
 
-    // Hacer una solicitud GET al endpoint del backend (puedes ajustar el endpoint según tus necesidades)
-    request.open('GET', 'https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io//check_token');
+    // Hacer una solicitud GET al endpoint del backend (puedes ajustar el endpoint según tus necesidades o como lo ocupes tu)
+    request.open('GET', 'https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/check_token');
     
     // Incluir el token en el encabezado de la solicitud
     request.setRequestHeader("Authorization", `Bearer ${token}`);
