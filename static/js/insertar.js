@@ -16,7 +16,7 @@ function checkTokenAndRedirect() {
     const request = new XMLHttpRequest();
 
     // Hacer una solicitud GET al endpoint del backend (puedes ajustar el endpoint según tus necesidades)
-    request.open('GET', 'https://contactos-backend-2x51.onrender.com/check_token');
+    request.open('GET', 'https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io//check_token');
     
     // Incluir el token en el encabezado de la solicitud
     request.setRequestHeader("Authorization", `Bearer ${token}`);
@@ -40,7 +40,7 @@ function insertContact(e) {
     const telefono = document.getElementById("telefono").value;
     const token = getCookie("token");  // Obtener el token almacenado en las cookies
 
-    fetch('https://contactos-backend-2x51.onrender.com/contactos', {
+    fetch('https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io//contactos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

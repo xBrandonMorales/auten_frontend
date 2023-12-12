@@ -2,7 +2,7 @@ async function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const backendURL = "https://contactos-backend-2x51.onrender.com"; // Reemplaza con la URL de tu backend
+    const backendURL = "https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/"; // Reemplaza con la URL de tu backend
 
     try {
         const response = await fetch(`${backendURL}/token`, {
