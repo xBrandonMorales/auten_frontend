@@ -2,8 +2,6 @@
 <html lang="es">
 <head>
     <title>Detalles del Contacto</title>
-    <!-- Enlaza tu archivo JavaScript específico para la página "ver.html" -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/ver.js') }}"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -11,10 +9,23 @@
         <h1 class="my-4">Detalles del Contacto</h1>
         <div id="contact-details">
             <!-- Aquí se mostrarán los detalles del contacto -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se cargarán dinámicamente los detalles del contacto -->
+                </tbody>
+            </table>
         </div>
         <a class="btn btn-primary" href="/home">Regresar</a>
     </div>
     <!-- Agrega el script al final para garantizar que se cargue después de la página -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/ver.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
