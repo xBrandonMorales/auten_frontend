@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Realiza una solicitud para obtener detalles del contacto con el correo electrónico proporcionado
     const token = getCookie("token");  // Obtener el token almacenado en las cookies
-    fetch(`https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/contactos/${encodeURIComponent(email)}`, {
+    fetch(`https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/contactos${encodeURIComponent(email)}`, {
         headers: {
             'Authorization': `Bearer ${token}`,  // Incluir el token en el encabezado de la solicitud
         },
@@ -47,7 +47,7 @@ function actualizar() {
 
     // Realiza una solicitud PUT para actualizar el contacto en el backend
     const token = getCookie("token");  // Obtener el token almacenado en las cookies
-    fetch(`https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/contactos/${encodeURIComponent(email)}`, {
+    fetch(`https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/contactos${encodeURIComponent(email)}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ function checkTokenAndRedirect() {
     const request = new XMLHttpRequest();
 
     // Hacer una solicitud GET al endpoint del backend (puedes ajustar el endpoint según tus necesidades)
-    request.open('GET', 'https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/check_token');
+    request.open('GET', 'https://8000-xbrandonmor-autenbacken-b2ajw23ji1b.ws-us106.gitpod.io/');
     
     // Incluir el token en el encabezado de la solicitud
     request.setRequestHeader("Authorization", `Bearer ${token}`);
